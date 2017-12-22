@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         red_button=new ColorButton(this,"red",redbar.getBar_x()-75,redbar.getBar_y()+redbar.getHeight()+50);
         green_button=new ColorButton(this,"green",greenbar.getBar_x()+(greenbar.getWidth()/2)-75,redbar.getBar_y()+redbar.getHeight()+50);
         blue_button=new ColorButton(this,"blue",bluebar.getBar_x()-75,bluebar.getBar_y()+bluebar.getHeight()+50);
-        //Kent part
+        //Player setup
         player = new Player(this,getScreenWidth(),getScreenHeight()/20);
         hpBar = new ImageView(this);
         hpBar.setImageResource(R.drawable.hp_bar);
@@ -108,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
 
         healthBarSetup();
         Toast.makeText(MainActivity.this,"Player hp:" + player.getHp(), Toast.LENGTH_SHORT).show();
-        //layout.addView(enemy.getImage());
 
         button_onHold();
         //Game Loop
@@ -152,7 +151,6 @@ public class MainActivity extends AppCompatActivity {
                                 player.takeDamage(10);
                                 enemy.getEnemyObj(a).notKilled=false;
                             }
-                            //Log.d("Enemy ratio",enemy.getEnemyObj(a).getHpRatio()+" "+enemy.getEnemyObj(a).getHealth_point());
                         }
                         scoreText.setText(Integer.toString(player.getKills()));
 
@@ -232,8 +230,6 @@ public class MainActivity extends AppCompatActivity {
     }
     public void physic(){
         if(player.getHp()<=0){
-            Intent endscene = new Intent(this,endgame.class);
-            startActivity(endscene);
             //Game over here
         }
         if(red_buttonhold||green_buttonhold||blue_buttonhold){
@@ -249,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
                 for(int count = 0;count<enemy.getAmount();count++){
                     enemy.getEnemyObj(count).damageCalculation(redbar.getColorPercent(),
                             greenbar.getColorPercent(),
-                            bluebar.getColorPercent());
+                            bluebar.getColorPercent(),player);
 
                 }
                 redbar.resetAll();

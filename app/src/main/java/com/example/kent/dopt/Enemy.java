@@ -216,12 +216,12 @@ public class Enemy {
         return  min_range + i;
     }
     //Here for u to calculate the damage and rmb if die set alive to false
-    public void damageCalculation(float red,float green, float blue){
+    public void damageCalculation(float red,float green, float blue, Player player){
         redDiff = abs(255 - abs(this.red- red))/255;
         greenDiff=abs(255 - abs(this.green- green))/255;
         blueDiff=abs(255 - abs(this.blue- blue))/255;
         damage=80*redDiff*greenDiff*blueDiff;
-        takeDamage(Math.round(damage));
+        takeDamage(Math.round(damage),player);
     }
     //get particle amount for tell the add the view amount into the layout
     public int getAmount(){return this.amount;}
@@ -267,11 +267,11 @@ public class Enemy {
         return alive;
     }
 
-    public void takeDamage(int damage){
+    public void takeDamage(int damage, Player player){
         if(alive){
             this.health_point -= damage;
             if(health_point<=0){
-                Player.kills += 1;
+                player.addKills();
                 reset();
             }
         }

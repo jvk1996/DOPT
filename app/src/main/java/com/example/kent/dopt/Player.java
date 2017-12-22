@@ -13,8 +13,8 @@ public class Player {
 
     private ImageView imageViewHpBar;
     private int maxHp;
-    public static int kills;
     private int hp;
+    private  int kills;
 
     public Player(Context context,int width,int height){
         imageViewHpBar = new ImageView(context);
@@ -36,8 +36,8 @@ public class Player {
         return (float)hp/maxHp;
     }
 
-    public static void addKills(int n){
-        kills += n;
+    public void addKills(){
+        kills += 1;
     }
 
     public void takeDamage(int damage){
