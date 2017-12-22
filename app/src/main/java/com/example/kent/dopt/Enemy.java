@@ -144,6 +144,8 @@ public class Enemy {
             position_y+=move_speed;
             filter = new LightingColorFilter(Color.argb(alpha,red,green,blue), 0);
             image.setColorFilter(filter);
+            //not sure wanna set or not, but set low alpha color hard to see
+            //image.setAlpha(220);
             image.setX(position_x);
             image.setY(position_y);
             GhostFilter=new LightingColorFilter(Color.argb(alpha,255,255,255),0);
